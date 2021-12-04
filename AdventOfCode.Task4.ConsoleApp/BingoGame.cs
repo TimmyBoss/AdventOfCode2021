@@ -1,25 +1,55 @@
-﻿using System;
+﻿using AdventOfCode.Shared;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AdventOfCode.Task4.ConsoleApp
 {
-    public class BingoGame
+    public class BingoGame : ITask
     {
-        public BingoGame(List<string> puzzleInput)
+        public BingoGame() { }
+
+        public void SetupPuzzleInput(List<string> puzzleInput)
         {
             Caller = new BingoNumberCaller(puzzleInput[0]);
             Cards = GetCards(puzzleInput);
-            ClonedCards = new List<BingoCard>();
-            ClonedCards.AddRange(Cards);
+        }
+
+        public int GetAnswer1()
+        {
+            foreach (var number in Caller.Call())
+            {
+                var card = CheckCards(number);
+
+                if (card != null)
+                {
+                    var sum = card.GetSum();
+                    return sum * number;
+                }
+            }
+
+            return 0;
+        }
+        public int GetAnswer2()
+        {
+            foreach (var number in Caller.Call())
+            {
+                var cardNumbers = GetBingoCardNumbers(number);
+                if (cardNumbers.Count() > 0)
+                {
+                    if (Cards.Count() == 1 && cardNumbers.Count() == 1)
+                    {
+                        return Cards.First().GetSum() * number;
+                    }
+
+                    Cards = Cards.Where(c => !cardNumbers.Contains(c.Number)).ToList();
+                }
+            }
+
+            return 0;
         }
 
         public BingoNumberCaller Caller { get; private set; }
-
         public List<BingoCard> Cards { get; private set; }
-        public List<BingoCard> ClonedCards { get; private set; }
 
         private List<BingoCard> GetCards(List<string> puzzleInput)
         {
@@ -43,39 +73,7 @@ namespace AdventOfCode.Task4.ConsoleApp
             return cards;
         }
 
-        public int Start()
-        {
-            foreach (var number in Caller.Call())
-            {
-                var card = CheckCards(number);
 
-                if (card != null)
-                {
-                    var sum = card.GetSum();
-                    return sum * number;
-                }
-            }
-
-            return 0;
-        }
-        public int CheckLastWinner()
-        {
-            foreach (var number in Caller.Call())
-            {
-                var cardNumbers = GetBingoCardNumbers(number);
-                if (cardNumbers.Count() > 0)
-                {
-                    if (Cards.Count() == 1 && cardNumbers.Count() == 1)
-                    {
-                        return Cards.First().GetSum() * number;
-                    }
-
-                    Cards = Cards.Where(c => !cardNumbers.Contains(c.Number)).ToList();
-                }
-            }
-
-            return 0;
-        }
 
         public BingoCard CheckCards(int number)
         {
@@ -105,6 +103,4 @@ namespace AdventOfCode.Task4.ConsoleApp
             return cardNumbers;
         }
     }
-
-
 }
