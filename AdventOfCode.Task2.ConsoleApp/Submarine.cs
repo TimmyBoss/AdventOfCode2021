@@ -1,7 +1,6 @@
 ﻿using AdventOfCode.Shared;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace AdventOfCode.Task2.ConsoleApp
 {
@@ -34,7 +33,24 @@ namespace AdventOfCode.Task2.ConsoleApp
 
         public int GetAnswer2()
         {
-            return 0;
+            var position = 0;
+            var depth = 0;
+            var aim = 0;
+
+            foreach (var instructionStep in _instructionSteps)
+            {
+                if (instructionStep.Instruction == Instruction.Forward)
+                {
+                    position += instructionStep.Steps;
+                    depth += instructionStep.Steps * aim;
+                }
+                if (instructionStep.Instruction == Instruction.Up)
+                    aim -= instructionStep.Steps;
+                if (instructionStep.Instruction == Instruction.Down)
+                    aim += instructionStep.Steps;
+            }
+
+            return depth * position;
         }
 
         public void SetupPuzzleInput(List<string> puzzleInput)
