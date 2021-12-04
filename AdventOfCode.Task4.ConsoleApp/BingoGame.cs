@@ -12,16 +12,20 @@ namespace AdventOfCode.Task4.ConsoleApp
         {
             Caller = new BingoNumberCaller(puzzleInput[0]);
             Cards = GetCards(puzzleInput);
+            ClonedCards = new List<BingoCard>();
+            ClonedCards.AddRange(Cards);
         }
 
         public BingoNumberCaller Caller { get; private set; }
 
         public List<BingoCard> Cards { get; private set; }
+        public List<BingoCard> ClonedCards { get; private set; }
 
         private List<BingoCard> GetCards(List<string> puzzleInput)
         {
             var cards = new List<BingoCard>();
             var numberRows = new List<string>();
+            int cardNumber = 1;
 
             foreach(var item in puzzleInput)
             {
@@ -30,8 +34,9 @@ namespace AdventOfCode.Task4.ConsoleApp
 
                 if (numberRows.Count == 5)
                 {
-                    cards.Add(new BingoCard(numberRows));
+                    cards.Add(new BingoCard(cardNumber, numberRows));
                     numberRows = new List<string>();
+                    cardNumber++;
                 }
             }
 
@@ -53,6 +58,24 @@ namespace AdventOfCode.Task4.ConsoleApp
 
             return 0;
         }
+        public int CheckLastWinner()
+        {
+            foreach (var number in Caller.Call())
+            {
+                var cardNumbers = GetBingoCardNumbers(number);
+                if (cardNumbers.Count() > 0)
+                {
+                    if (Cards.Count() == 1 && cardNumbers.Count() == 1)
+                    {
+                        return Cards.First().GetSum() * number;
+                    }
+
+                    Cards = Cards.Where(c => !cardNumbers.Contains(c.Number)).ToList();
+                }
+            }
+
+            return 0;
+        }
 
         public BingoCard CheckCards(int number)
         {
@@ -65,6 +88,21 @@ namespace AdventOfCode.Task4.ConsoleApp
             }
 
             return null;
+        }
+
+        public List<int> GetBingoCardNumbers(int number)
+        {
+            var cardNumbers = new List<int>();
+
+            foreach (var card in Cards)
+            {
+                card.MarkNumber(number);
+
+                if (card.HasBingo())
+                    cardNumbers.Add(card.Number);
+            }
+
+            return cardNumbers;
         }
     }
 

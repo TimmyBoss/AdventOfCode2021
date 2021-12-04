@@ -6,11 +6,13 @@ namespace AdventOfCode.Task4.ConsoleApp
 {
     public class BingoCard
     {
+        public int Number { get; set; }
         public List<List<int>> _rows { get; set; }
         public List<List<int>> _columns { get; set; }
 
-        public BingoCard(List<string> numberRows)
+        public BingoCard(int number, List<string> numberRows)
         {
+            Number = number;
             _rows = GetRows(numberRows);
             _columns = GetColumns(numberRows);
         }

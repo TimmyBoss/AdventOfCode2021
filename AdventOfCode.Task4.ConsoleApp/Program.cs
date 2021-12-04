@@ -11,8 +11,9 @@ namespace AdventOfCode.Task4.ConsoleApp
             var bingoGame = new BingoGame(list);
 
             var answer1 = bingoGame.Start();
-
+            var answer2 = bingoGame.CheckLastWinner();
             Console.WriteLine(answer1);
+            Console.WriteLine(answer2);
             Console.ReadLine();
         }
     }
