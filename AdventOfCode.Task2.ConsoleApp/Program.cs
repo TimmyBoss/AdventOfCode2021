@@ -1,4 +1,4 @@
-﻿using System;
+﻿using AdventOfCode.Shared;
 
 namespace AdventOfCode.Task2.ConsoleApp
 {
@@ -6,9 +6,8 @@ namespace AdventOfCode.Task2.ConsoleApp
     {
         static void Main(string[] args)
         {
-            var calculationService = new CalculationService();
-            Console.WriteLine(calculationService.GetAnswer());
-            Console.ReadLine();
+            var task = new Task<Submarine>();
+            task.ReadAnswers();
         }
     }
 }
