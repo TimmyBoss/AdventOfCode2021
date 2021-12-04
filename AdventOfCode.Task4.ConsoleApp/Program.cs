@@ -8,11 +8,12 @@ namespace AdventOfCode.Task4.ConsoleApp
         static void Main(string[] args)
         {
             var list = PuzzleInputReader.GetInput();
+            var bingoGame = new BingoGame(list);
 
-            foreach (var item in list)
-            { 
-                Console.WriteLine(item);
-            }
+            var answer1 = bingoGame.Start();
+
+            Console.WriteLine(answer1);
+            Console.ReadLine();
         }
     }
 }
