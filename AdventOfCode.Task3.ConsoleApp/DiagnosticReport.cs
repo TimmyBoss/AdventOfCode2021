@@ -33,7 +33,52 @@ namespace AdventOfCode.Task3.ConsoleApp
 
         public int GetAnswer2()
         {
-            return 0;
+            var workList = new List<string>();
+            workList.AddRange(_binaryNumbers);
+            var oxygenRating = "";
+            var scrubberRating = "";
+
+            for (int i = 0; i < binaryLength; i++)
+            {
+                var ones = workList.Count(b => b[i] == '1');
+                var zeros = workList.Count(b => b[i] == '0');
+
+                if (ones >= zeros)
+                    workList.RemoveAll(r => r[i] == '0');
+                else
+                    workList.RemoveAll(r => r[i] == '1');
+
+                if (workList.Count == 1)
+                {
+                    oxygenRating = workList.First();
+                    break;
+                }
+            }
+
+            workList = new List<string>();
+            workList.AddRange(_binaryNumbers);
+
+            for (int i = 0; i < binaryLength; i++)
+            {
+                var ones = workList.Count(b => b[i] == '1');
+                var zeros = workList.Count(b => b[i] == '0');
+
+                if (ones >= zeros)
+                    workList.RemoveAll(r => r[i] == '1');
+                else
+                    workList.RemoveAll(r => r[i] == '0');
+
+                if (workList.Count == 1)
+                {
+                    scrubberRating = workList.First();
+                    break;
+                }
+            }
+
+            var oxygenDecimal = Convert.ToInt32(oxygenRating, 2);
+            var scrubberDecimal = Convert.ToInt32(scrubberRating, 2);
+
+            return oxygenDecimal * scrubberDecimal;
         }
 
         public void SetupPuzzleInput(List<string> puzzleInput)
