@@ -14,7 +14,7 @@ namespace AdventOfCode.Task4.ConsoleApp
             Cards = GetCards(puzzleInput);
         }
 
-        public int GetAnswer1()
+        public long GetAnswer1()
         {
             foreach (var number in Caller.Call())
             {
@@ -29,7 +29,7 @@ namespace AdventOfCode.Task4.ConsoleApp
 
             return 0;
         }
-        public int GetAnswer2()
+        public long GetAnswer2()
         {
             foreach (var number in Caller.Call())
             {

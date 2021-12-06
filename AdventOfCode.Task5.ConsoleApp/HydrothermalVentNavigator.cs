@@ -8,7 +8,7 @@ namespace AdventOfCode.Task5.ConsoleApp
         private VentField _ventField;
         private VentLines _ventLines;
 
-        public int GetAnswer1()
+        public long GetAnswer1()
         {
             _ventField = new VentField();
             var ventLines = _ventLines.GetHorizontalVerticalOnly();
@@ -17,7 +17,7 @@ namespace AdventOfCode.Task5.ConsoleApp
             return overlapCount;
         }
 
-        public int GetAnswer2()
+        public long GetAnswer2()
         {
             _ventField = new VentField();
             _ventField.DrawLines(_ventLines);

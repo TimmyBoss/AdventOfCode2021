@@ -13,7 +13,7 @@ namespace AdventOfCode.Task2.ConsoleApp
             _instructionSteps = new List<InstructionSteps>();
         }
 
-        public int GetAnswer1()
+        public long GetAnswer1()
         {
             var position = 0;
             var depth = 0;
@@ -31,7 +31,7 @@ namespace AdventOfCode.Task2.ConsoleApp
             return position * depth;
         }
 
-        public int GetAnswer2()
+        public long GetAnswer2()
         {
             var position = 0;
             var depth = 0;

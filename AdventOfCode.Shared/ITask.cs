@@ -5,7 +5,7 @@ namespace AdventOfCode.Shared
     public interface ITask
     {
         void SetupPuzzleInput(List<string> puzzleInput);
-        int GetAnswer1();
-        int GetAnswer2();
+        long GetAnswer1();
+        long GetAnswer2();
     }
 }

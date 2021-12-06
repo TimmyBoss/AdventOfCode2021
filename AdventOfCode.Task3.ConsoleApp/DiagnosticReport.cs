@@ -11,7 +11,7 @@ namespace AdventOfCode.Task3.ConsoleApp
 
         private List<string> _binaryNumbers;
 
-        public int GetAnswer1()
+        public long GetAnswer1()
         {
             var gammaRate = "";
             var epsilonRate = "";
@@ -31,7 +31,7 @@ namespace AdventOfCode.Task3.ConsoleApp
             return gammaDecimal * epsilonDecimal;
         }
 
-        public int GetAnswer2()
+        public long GetAnswer2()
         {
             var workList = new List<string>();
             workList.AddRange(_binaryNumbers);
