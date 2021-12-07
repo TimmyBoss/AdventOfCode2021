@@ -10,12 +10,12 @@ namespace AdventOfCode.Task1.ConsoleApp
 
         public SonarSweeper() { }
 
-        public int GetAnswer1()
+        public long GetAnswer1()
         {
             return GetIncreasedCount(_depthList);
         }
 
-        public int GetAnswer2()
+        public long GetAnswer2()
         {
             var measurementWindows = new List<int>();
             int counter = 0;
