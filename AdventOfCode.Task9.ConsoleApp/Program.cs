@@ -7,7 +7,7 @@ namespace AdventOfCode.Task9.ConsoleApp
     {
         static void Main(string[] args)
         {
-            var task = new Task<Henk>();
+            var task = new Task<SmokeBasin>();
             task.ReadAnswers();
         }
     }
