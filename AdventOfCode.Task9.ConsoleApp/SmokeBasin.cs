@@ -70,10 +70,10 @@ namespace AdventOfCode.Task9.ConsoleApp
             return orderedBasins[0] * orderedBasins[1] * orderedBasins[2];
         }
 
-        private int RecursiveHenk(int i, int j)
+        private void RecursiveHenk(int i, int j)
         {
             if (alreadySet.Any(a => a == $"{i}-{j}"))
-                return 0;
+                return;
 
             alreadySet.Add($"{i}-{j}");
 
@@ -91,7 +91,7 @@ namespace AdventOfCode.Task9.ConsoleApp
             if (down < 9)
                 RecursiveHenk(i+1, j);
 
-            return 0;
+            return;
         }
 
         public void SetupPuzzleInput(List<string> puzzleInput)
