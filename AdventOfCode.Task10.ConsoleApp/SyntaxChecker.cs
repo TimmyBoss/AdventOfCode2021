@@ -17,8 +17,8 @@ namespace AdventOfCode.Task10.ConsoleApp
         private readonly char haakjeClosed = ')';
         private readonly char bracketOpen = '[';
         private readonly char bracketClosed = ']';
-        private readonly char accoladeOpen = '{';
-        private readonly char accodeladeClosed = '}';
+        private readonly char curlyOpen = '{';
+        private readonly char curlyClosed = '}';
         private readonly char henkOpen = '<';
         private readonly char henkClosed = '>';
 
@@ -56,7 +56,7 @@ namespace AdventOfCode.Task10.ConsoleApp
                         sb.Remove(i, 2);
                         i = 0;
                     }
-                    if (sb[i] == accoladeOpen && sb[i + 1] == accodeladeClosed)
+                    if (sb[i] == curlyOpen && sb[i + 1] == curlyClosed)
                     {
                         sb.Remove(i, 2);
                         i = 0;
@@ -71,7 +71,7 @@ namespace AdventOfCode.Task10.ConsoleApp
                 }
 
                 if (sb.ToString().Contains(haakjeClosed) || sb.ToString().Contains(bracketClosed) ||
-                    sb.ToString().Contains(accodeladeClosed) || sb.ToString().Contains(henkClosed)) 
+                    sb.ToString().Contains(curlyClosed) || sb.ToString().Contains(henkClosed)) 
                 {
                     foreach (var c in sb.ToString())
                     {
@@ -124,7 +124,7 @@ namespace AdventOfCode.Task10.ConsoleApp
                         sb.Remove(i, 2);
                         i = 0;
                     }
-                    if (sb[i] == accoladeOpen && sb[i + 1] == accodeladeClosed)
+                    if (sb[i] == curlyOpen && sb[i + 1] == curlyClosed)
                     {
                         sb.Remove(i, 2);
                         i = 0;
@@ -139,7 +139,7 @@ namespace AdventOfCode.Task10.ConsoleApp
                 }
 
                 if (!sb.ToString().Contains(haakjeClosed) && !sb.ToString().Contains(bracketClosed) &&
-                    !sb.ToString().Contains(accodeladeClosed) && !sb.ToString().Contains(henkClosed))
+                    !sb.ToString().Contains(curlyClosed) && !sb.ToString().Contains(henkClosed))
                 {
                     for (var c = sb.Length-1; c >= 0; c--)
                     {
