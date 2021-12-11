@@ -103,11 +103,6 @@ namespace AdventOfCode.Task9.ConsoleApp
             }
         }
 
-        private List<int> ConvertNumberStringToIntList(string numbers)
-        {
-            return numbers.ToCharArray().Select(s => Convert.ToInt32(s.ToString())).ToList();
-        }
-
         public bool CheckIfLowest(int currentNumber, int prevNumber, int nextNumber, int upNumber, int downNumber)
         {
 
